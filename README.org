@@ -1,0 +1,30 @@
+#+TITLE: My build of DWM
+#+AUTHOR: ynsemrekmc
+#+DATE: [2026-02-11 Wed]
+
+* My build of DWM
+** Information about this repository
+This is a direct fork of [[https://github.com/LukeSmithxyz/dwm][Luke Smith's build of dwm]] and is customized
+for my personal use case.
+
+** FAQ
+#+BEGIN_QUOTE
+What are the bindings?
+#+END_QUOTE
+
+This is suckless, mmmbud, the source code is the documentation! Check out [[file:config.h][config.h]].
+
+** Patches and features
+- [[https://dwm.suckless.org/patches/statuscmd/][Clickable statusbar]] with my build of [[https://github.com/ynsemrekmc/dwmblocks-async][dwmblocks-async]].
+- Reads [[https://dwm.suckless.org/patches/xresources/][xresources]] colors/variables (i.e. works with `pywal`, etc.).
+- scratchpad: Accessible with <kbd>mod+shift+enter</kbd>.
+- New layouts: bstack, fibonacci, deck, centered master and more. All bound to keys <kbd>super+(shift+)t/y/u/i</kbd>.
+- True fullscreen (<kbd>super+f</kbd>) and prevents focus shifting.
+- Windows can be made sticky (<kbd>super+s</kbd>).
+- [[https://dwm.suckless.org/patches/hide_vacant_tags/][hide vacant tags]] hides tags with no windows.
+- [[https://dwm.suckless.org/patches/stacker/][stacker]]: Move windows up the stack manually (<kbd>super-K/J</kbd>).
+- [[https://dwm.suckless.org/patches/nextprev/][shiftview]]: Cycle through tags (<kbd>super+g/;</kbd>).
+- [[https://dwm.suckless.org/patches/vanitygaps/][vanitygaps]]: Gaps allowed across all layouts.
+- [[https://dwm.suckless.org/patches/swallow/][swallow patch]]: if a program run from a terminal would make it inoperable, it temporarily takes its place to save space.
+- [[https://dwm.suckless.org/patches/systray/][systray patch]]: Add a system tray for application icons in the status bar.
+
