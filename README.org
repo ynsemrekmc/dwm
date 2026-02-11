@@ -2,19 +2,18 @@
 #+AUTHOR: ynsemrekmc
 #+DATE: [2026-02-11 Wed]
 
-* My build of DWM
-** Information about this repository
+* Information about this repository
 This is a direct fork of [[https://github.com/LukeSmithxyz/dwm][Luke Smith's build of dwm]] and is customized
 for my personal use case.
 
-** FAQ
+* FAQ
 #+BEGIN_QUOTE
 What are the bindings?
 #+END_QUOTE
 
 This is suckless, mmmbud, the source code is the documentation! Check out [[file:config.h][config.h]].
 
-** Patches and features
+* Patches and features
 - [[https://dwm.suckless.org/patches/statuscmd/][Clickable statusbar]] with my build of [[https://github.com/ynsemrekmc/dwmblocks-async][dwmblocks-async]].
 - Reads [[https://dwm.suckless.org/patches/xresources/][xresources]] colors/variables (i.e. works with `pywal`, etc.).
 - scratchpad: Accessible with <kbd>mod+shift+enter</kbd>.
