@@ -249,6 +249,7 @@ static void propertynotify(XEvent *e);
 static void pushstack(const Arg *arg);
 static void quit(const Arg *arg);
 static Monitor *recttomon(int x, int y, int w, int h);
+static int readinessnotify(const char *env_name);
 static void removesystrayicon(Client *i);
 static void resize(Client *c, int x, int y, int w, int h, int interact);
 static void resizebarwin(Monitor *m);
@@ -1794,10 +1795,40 @@ run(void)
 			handler[ev.type](&ev); /* call handler */
 }
 
+int
+readinessnotify(const char *env_name)
+{
+	const char *readiness_fd = getenv(env_name);
+	if (!readiness_fd)
+		goto err_return;
+
+	char *end;
+	errno = 0;
+	long fd = strtol(readiness_fd, &end, 10);
+
+	if (errno != 0 || readiness_fd == end || *end != '\0')
+		goto err_return;
+
+	if (fd < 0 || fd > INT_MAX)
+		goto err_return;
+
+	if (write((int)fd, "\n", 1) != 1)
+		goto err_return;
+
+	return 0;
+
+err_return:
+	return 1;
+}
+
 void
 runAutostart(void) {
-	system("killall -q dwmblocks; dwmblocks &");
-	write(3, "\n", 1);
+	const char *env_name = "DINIT_FD";
+	if (readinessnotify(env_name) != 0) {
+		fprintf(stderr,
+			"Warning: %s is empty.\nReadiness notification not sent.",
+			env_name);
+	}
 }
 
 void
