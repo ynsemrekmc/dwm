@@ -77,10 +77,10 @@ static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen win
 #include "vanitygaps.c"
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "[@]",	spiral },               /* Default: Fibonacci spiral */
+	{ "[]=",	tile },	        /* Default: Master on left, slaves on right */
 	{ "TTT",	bstack },               /* Master on top, slaves on bottom */
 
-	{ "[]=",	tile },	                /* Master on left, slaves on right */
+	{ "[@]",	spiral },               /* Fibonacci spiral */
 	{ "[\\]",	dwindle },              /* Decreasing in size right and leftward */
 
 	{ "[D]",	deck },	                /* Master on left, slaves in monocle-like mode on right */
@@ -279,6 +279,11 @@ static const Key keys[] = {
 	{ ShiftMask, XF86XK_MonBrightnessUp,           spawn,                  {.v = (const char*[]){ "set-volume", "-bri", "10%+", NULL } } },
 	{ 0, XF86XK_MonBrightnessDown,                 spawn,                  {.v = (const char*[]){ "set-volume", "-bri", "5%-", NULL } } },
 	{ ShiftMask, XF86XK_MonBrightnessDown,         spawn,                  {.v = (const char*[]){ "set-volume", "-bri", "10%-", NULL } } },
+
+	/* system power */
+	{ MODKEY,		XK_Escape,	spawn,		{.v = (const char*[]) {"dinitctl", "start", "suspend.target", NULL} } },
+	{ MODKEY|ShiftMask,	XK_Escape,	spawn,		{.v = (const char*[]) {"dinitctl", "start", "hibernate.target", NULL} } },
+	{ MODKEY|ControlMask,	XK_Escape,	spawn,		{.v = (const char*[]) {"loginctl", "poweroff", NULL} } },
 
 	/* { MODKEY|Mod4Mask,           XK_h,          incrgaps,               {.i = +1 } }, */
 	/* { MODKEY|Mod4Mask,           XK_l,          incrgaps,               {.i = -1 } }, */
