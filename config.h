@@ -43,10 +43,10 @@ const char *spcmd1[] = { TERMINAL, "-n", "spterm", "-g", "120x34", NULL };
 const char *spcmd2[] = { "emacsclient", "-e", "(yns/emacs-calc-frame)", NULL };
 const char *spcmd3[] = { "emacsclient", "-e", "(yns/org-agenda-popup)", NULL };
 static Sp scratchpads[] = {
-	/* name          cmd  */
-	{"spterm",       spcmd1},
-	{"emacs calc",   spcmd2},
-	{"Daily Agenda", spcmd3}
+	/* name      cmd  */
+	{"spterm",   spcmd1},
+	{"spcalc",   spcmd2},
+	{"spagenda", spcmd3}
 };
 
 /* tagging */
@@ -58,14 +58,14 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	*/
 	/* class    instance      title       	 tags mask    isfloating   isterminal  noswallow  monitor */
-	{ "Gimp",     NULL,       NULL,          1 << 8,      0,           0,          0,         -1 },
-	{ TERMCLASS,  NULL,       NULL,       	 0,           0,           1,          0,         -1 },
+	{ "Gimp",     NULL,        NULL,         1 << 8,      0,           0,          0,         -1 },
+	{ TERMCLASS,  NULL,        NULL,     	 0,           0,           1,          0,         -1 },
 	{ NULL,       NULL,       "Event Tester", 0,          0,           0,          1,         -1 },
-	{ TERMCLASS,  "floatterm", NULL,       	 0,           1,           1,          0,         -1 },
-	{ TERMCLASS,  "bg",        NULL,       	 1 << 7,      0,           1,          0,         -1 },
-	{ TERMCLASS,  "spterm",    NULL,       	 SPTAG(0),    1,           1,          0,         -1 },
-	{ TERMCLASS,  "emacs calc",    NULL,       	 SPTAG(1),    1,           1,          0,         -1 },
-	{ TERMCLASS,  "Daily Agenda",    NULL,       	 SPTAG(2),    1,           1,          0,         -1 },
+	{ TERMCLASS,  "floatterm", NULL,	 0,           1,           1,          0,         -1 },
+	{ TERMCLASS,  "bg",        NULL,	 1 << 7,      0,           1,          0,         -1 },
+	{ "spterm",   "spterm",     NULL,	 SPTAG(0),    1,           1,          0,         -1 },
+	{ "Emacs",    "spcalc",      NULL, 	 SPTAG(1),    1,           1,          0,         -1 },
+	{ "Emacs",    "spagenda",    NULL,	 SPTAG(2),    1,           1,          0,         -1 },
 };
 
 /* layout(s) */
@@ -115,7 +115,7 @@ static const Layout layouts[] = {
 /* commands */
 static const char *termcmd[]  = { TERMINAL, NULL };
 static const char *emacsterm[] = { "emacsclient", "-e", "(yns/term-frame #'eshell #'yns/eshell-blocked?)", NULL };
-static const char *emacscmd[] = { "/bin/sh", "-c", "emacsclient -c -a ''", NULL };
+static const char *emacscmd[] = { "emacsclient", "-c", NULL };
 
 /*
  * Xresources preferences to load at startup
@@ -253,17 +253,19 @@ static const Key keys[] = {
 	{ MODKEY,			XK_space,      zoom,                   {0} },
 	{ MODKEY|ShiftMask,		XK_space,      togglefloating,         {0} },
 
-	{ 0,				XK_Print,      spawn,                  SHCMD("maim pic-full-$(date '+%y%m%d-%H%M-%S').png") },
+	{ 0,				XK_Print,      spawn,                  SHCMD("maim ~/Pictures/pic-full-$(date '+%y%m%d-%H%M-%S').png") },
 	{ ShiftMask,			XK_Print,      spawn,                  {.v = (const char*[]){ "maimpick", NULL } } },
 	{ MODKEY,			XK_Scroll_Lock, spawn,                 SHCMD("killall screenkey || screenkey &") },
 
-	{ 0, XF86XK_AudioMute,                         spawn,                  SHCMD("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; kill -44 $(pidof dwmblocks)") },
+	{ 0, XF86XK_AudioMute,                         spawn,                  SHCMD("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; kill -38 $(pidof dwmblocks)") },
+	{ ControlMask, XF86XK_AudioMute,               spawn,                  SHCMD("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle; kill -38 $(pidof dwmblocks)") },
 	{ 0, XF86XK_AudioRaiseVolume,                  spawn,                  {.v = (const char*[]) {"set-volume", "-vol", "5%+", NULL} } },
 	{ ShiftMask, XF86XK_AudioRaiseVolume,          spawn,                  {.v = (const char*[]) {"set-volume", "-vol", "10%+", NULL} } },
+	{ ControlMask, XF86XK_AudioRaiseVolume,        spawn,                  SHCMD("wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 10%+ -l 1.0; kill -38 $(pidof dwmblocks)") },
 	{ 0, XF86XK_AudioLowerVolume,                  spawn,                  {.v = (const char*[]) {"set-volume", "-vol", "5%-", NULL} } },
 	{ ShiftMask, XF86XK_AudioLowerVolume,          spawn,                  {.v = (const char*[]) {"set-volume", "-vol", "10%-", NULL} } },
-	{ 0, XF86XK_AudioMicMute,                      spawn,                  SHCMD("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle; kill -44 $(pidof dwmblocks)") },
-	/* { 0, XF86XK_PowerOff,                       spawn,                  {.v = (const char*[]){ "sysact", NULL } } }, */
+	{ ControlMask, XF86XK_AudioLowerVolume,        spawn,                  SHCMD("wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 10%- -l 1.0; kill -38 $(pidof dwmblocks)") },
+	{ 0, XF86XK_AudioMicMute,                      spawn,                  SHCMD("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle; kill -38 $(pidof dwmblocks)") },
 	{ 0, XF86XK_Calculator,                        spawn,                  {.v = (const char*[]){ TERMINAL, "-e", "bc", "-l", NULL } } },
 	{ 0, XF86XK_WWW,                               spawn,                  {.v = (const char*[]){ BROWSER, NULL } } },
 	{ 0, XF86XK_DOS,                               spawn,                  {.v = termcmd } },
@@ -279,6 +281,9 @@ static const Key keys[] = {
 	{ ShiftMask, XF86XK_MonBrightnessUp,           spawn,                  {.v = (const char*[]){ "set-volume", "-bri", "10%+", NULL } } },
 	{ 0, XF86XK_MonBrightnessDown,                 spawn,                  {.v = (const char*[]){ "set-volume", "-bri", "5%-", NULL } } },
 	{ ShiftMask, XF86XK_MonBrightnessDown,         spawn,                  {.v = (const char*[]){ "set-volume", "-bri", "10%-", NULL } } },
+
+	/* notifications */
+	{ MODKEY|ShiftMask,	XK_asterisk,	spawn,		{.v = (const char*[]) {"dunstctl", "context", NULL} } },
 
 	/* system power */
 	{ MODKEY,		XK_Escape,	spawn,		{.v = (const char*[]) {"dinitctl", "start", "suspend.target", NULL} } },
@@ -309,12 +314,12 @@ static const Button buttons[] = {
 	/* click                event mask           button          function        argument */
 #ifndef __OpenBSD__
 	{ ClkWinTitle,          0,                   Button2,        zoom,           {0} },
-	{ ClkStatusText,        0,                   Button1,        sigdwmblocks,   {.i = 1} },
-	{ ClkStatusText,        0,                   Button2,        sigdwmblocks,   {.i = 2} },
-	{ ClkStatusText,        0,                   Button3,        sigdwmblocks,   {.i = 3} },
-	{ ClkStatusText,        0,                   Button4,        sigdwmblocks,   {.i = 4} },
-	{ ClkStatusText,        0,                   Button5,        sigdwmblocks,   {.i = 5} },
-	{ ClkStatusText,        ShiftMask,           Button1,        sigdwmblocks,   {.i = 6} },
+	{ ClkStatusText,        0,                   Button1,        sigdwmblocks,   {.i = 11} },
+	{ ClkStatusText,        0,                   Button2,        sigdwmblocks,   {.i = 12} },
+	{ ClkStatusText,        0,                   Button3,        sigdwmblocks,   {.i = 13} },
+	{ ClkStatusText,        0,                   Button4,        sigdwmblocks,   {.i = 14} },
+	{ ClkStatusText,        0,                   Button5,        sigdwmblocks,   {.i = 15} },
+	{ ClkStatusText,        ShiftMask,           Button1,        sigdwmblocks,   {.i = 16} },
 #endif
 	{ ClkStatusText,        ShiftMask,           Button3,        spawn,          SHCMD(TERMINAL " -e nvim ~/.local/src/dwmblocks/config.h") },
 	{ ClkClientWin,         MODKEY,              Button1,        movemouse,      {0} },
