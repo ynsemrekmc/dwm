@@ -1826,7 +1826,7 @@ runAutostart(void) {
 	const char *env_name = "DINIT_FD";
 	if (readinessnotify(env_name) != 0) {
 		fprintf(stderr,
-			"Warning: %s is empty. Readiness notification not sent.\n",
+			"Warning: Inspect %s env var. Readiness notification not sent.\n",
 			env_name);
 	}
 }
