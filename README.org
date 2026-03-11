@@ -20,7 +20,7 @@ This is suckless, mmmbud, the source code is the documentation! Check out [[file
 - New layouts: bstack, fibonacci, deck, centered master and more. All bound to keys =super+(shift+)t/y/u/i=.
 - True fullscreen (=super+f=) and prevents focus shifting.
 - Windows can be made sticky (=super+s=).
-- [[https://skarnet.org/software/s6/][s6]]-style readiness notification support. Specifically built for [[https://davmac.org/projects/dinit/][dinit]], expects to read the environment variable ~DINIT_FD~.
+- [[https://skarnet.org/software/s6/][s6]]-style [[https://skarnet.org/software/s6/notifywhenup.html][readiness notification]] support. Specifically built for [[https://davmac.org/projects/dinit/][dinit]], expects to read the environment variable ~DINIT_FD~.
 - [[https://dwm.suckless.org/patches/hide_vacant_tags/][hide vacant tags]] hides tags with no windows.
 - [[https://dwm.suckless.org/patches/stacker/][stacker]]: Move windows up the stack manually (=super-K/J=).
 - [[https://dwm.suckless.org/patches/nextprev/][shiftview]]: Cycle through tags (=super+g/;=).
