@@ -249,7 +249,6 @@ static const Key keys[] = {
 
 	{ MODKEY,			XK_F5,         xrdb,                   {.v = NULL } },
 	{ MODKEY,			XK_F11,		spawn,                  SHCMD("mpv --untimed --no-cache --no-osc --no-input-default-bindings --profile=low-latency --input-conf=/dev/null --title=webcam $(ls /dev/video[0,2,4,6,8] | tail -n 1)") },
-	{ MODKEY,			XF86XK_Favorites,	spawn,         {.v = (const char*[]){"toggle-touchpad-x11", NULL} } },
 	{ MODKEY,			XK_space,      zoom,                   {0} },
 	{ MODKEY|ShiftMask,		XK_space,      togglefloating,         {0} },
 
@@ -265,6 +264,7 @@ static const Key keys[] = {
 	{ 0, XF86XK_AudioLowerVolume,                  spawn,                  {.v = (const char*[]) {"set-volume", "-vol", "5%-", NULL} } },
 	{ ShiftMask, XF86XK_AudioLowerVolume,          spawn,                  {.v = (const char*[]) {"set-volume", "-vol", "10%-", NULL} } },
 	{ ControlMask, XF86XK_AudioLowerVolume,        spawn,                  SHCMD("wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 10%- -l 1.0; kill -38 $(pidof dwmblocks)") },
+	{ MODKEY, XF86XK_Favorites,                    spawn,                  SHCMD("(synclient | grep 'TouchpadOff.*1' && synclient TouchpadOff=0 && synclient TapButton1=1) || synclient TouchpadOff=1") },
 	{ 0, XF86XK_AudioMicMute,                      spawn,                  SHCMD("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle; kill -38 $(pidof dwmblocks)") },
 	{ 0, XF86XK_Calculator,                        spawn,                  {.v = (const char*[]){ TERMINAL, "-e", "bc", "-l", NULL } } },
 	{ 0, XF86XK_WWW,                               spawn,                  {.v = (const char*[]){ BROWSER, NULL } } },
@@ -274,7 +274,6 @@ static const Key keys[] = {
 	{ 0, XF86XK_MyComputer,                        spawn,                  {.v = (const char*[]){ TERMINAL, "-e",  "lfub",  "/", NULL } } },
 	/* { 0, XF86XK_Battery,                        spawn,                  SHCMD("") }, */
 	{ 0, XF86XK_Launch1,                           spawn,                  {.v = (const char*[]){ "xset", "dpms", "force", "off", NULL } } },
-	{ 0, XF86XK_TouchpadToggle,                    spawn,                  SHCMD("(synclient | grep 'TouchpadOff.*1' && synclient TouchpadOff=0) || synclient TouchpadOff=1") },
 	{ 0, XF86XK_TouchpadOff,                       spawn,                  {.v = (const char*[]){ "synclient", "TouchpadOff=1", NULL } } },
 	{ 0, XF86XK_TouchpadOn,                        spawn,                  {.v = (const char*[]){ "synclient", "TouchpadOff=0", NULL } } },
 	{ 0, XF86XK_MonBrightnessUp,                   spawn,                  {.v = (const char*[]){ "set-volume", "-bri", "5%+", NULL } } },
