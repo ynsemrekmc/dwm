@@ -3,7 +3,7 @@
 /* Constants */
 #define TERMINAL "st"
 #define TERMCLASS "St"
-#define BROWSER "mullvad-browser-bin"
+#define BROWSER "mullvad-browser"
 #define LOCKER "loginctl lock-session"
 
 /* appearance */
@@ -194,7 +194,7 @@ static const Key keys[] = {
 	{ MODKEY,			XK_d,          spawn,                  {.v = (const char*[]){ "dmenu_run", NULL } } },
 	{ MODKEY|ShiftMask,		XK_d,          spawn,                  {.v = (const char*[]){ "systemmenu", NULL } } },
 	{ MODKEY,			XK_c,          togglefullscr,          {0} },
-	/* { MODKEY|ShiftMask,		XK_f,          setlayout,              {.v = &layouts[8]} }, */
+	{ MODKEY|ShiftMask,		XK_f,          setlayout,              {.v = &layouts[8]} },
 	{ MODKEY,			XK_g,          shiftview,              { .i = -1 } },
 	{ MODKEY|ShiftMask,		XK_g,          shifttag,               { .i = -1 } },
 	{ MODKEY,			XK_b,          setmfact,               {.f = -0.05} },
@@ -237,27 +237,10 @@ static const Key keys[] = {
 	{ MODKEY|ControlMask,		XK_comma,      spawn,                  SHCMD("mpcplay && mpc-notify") },
 	{ MODKEY|ControlMask|ShiftMask, XK_comma,      spawn,                  SHCMD("mpcrandom") },
 
-	{ MODKEY|ShiftMask,		XK_n,		moveresize,     {.v = "0x 25y 0w 0h" } },
-	{ MODKEY|ShiftMask,		XK_p,		moveresize,     {.v = "0x -25y 0w 0h" } },
-	{ MODKEY|ShiftMask,		XK_f,		moveresize,     {.v = "25x 0y 0w 0h" } },
-	{ MODKEY|ShiftMask,		XK_b,		moveresize,     {.v = "-25x 0y 0w 0h" } },
-	{ MODKEY|ControlMask,		XK_n,		moveresize,     {.v = "0x 0y 0w 25h" } },
-	{ MODKEY|ControlMask,		XK_p,		moveresize,     {.v = "0x 0y 0w -25h" } },
-	{ MODKEY|ControlMask,		XK_f,		moveresize,     {.v = "0x 0y 25w 0h" } },
-	{ MODKEY|ControlMask,		XK_b,		moveresize,     {.v = "0x 0y -25w 0h" } },
-	/* snap to edges, resize to edges */
-	/* { MODKEY|ControlMask,           XK_p,		moveresizeedge, {.v = "t"} }, */
-	/* { MODKEY|ControlMask,           XK_n,		moveresizeedge, {.v = "b"} }, */
-	/* { MODKEY|ControlMask,           XK_b,		moveresizeedge, {.v = "l"} }, */
-	/* { MODKEY|ControlMask,           XK_f,		moveresizeedge, {.v = "r"} }, */
-	/* { MODKEY|ControlMask|ShiftMask, XK_p,		moveresizeedge, {.v = "T"} }, */
-	/* { MODKEY|ControlMask|ShiftMask, XK_n,		moveresizeedge, {.v = "B"} }, */
-	/* { MODKEY|ControlMask|ShiftMask, XK_b,		moveresizeedge, {.v = "L"} }, */
-	/* { MODKEY|ControlMask|ShiftMask, XK_f,		moveresizeedge, {.v = "R"} }, */
-	//{ MODKEY,			XK_Left,       focusmon,               {.i = -1 } },
-	//{ MODKEY|ShiftMask,		XK_Left,       tagmon,                 {.i = -1 } },
-	//{ MODKEY,			XK_Right,      focusmon,               {.i = +1 } },
-	//{ MODKEY|ShiftMask,		XK_Right,      tagmon,                 {.i = +1 } },
+	{ MODKEY,			XK_Left,       focusmon,               {.i = -1 } },
+	{ MODKEY|ShiftMask,		XK_Left,       tagmon,                 {.i = -1 } },
+	{ MODKEY,			XK_Right,      focusmon,               {.i = +1 } },
+	{ MODKEY|ShiftMask,		XK_Right,      tagmon,                 {.i = +1 } },
 
 	{ MODKEY,			XK_Page_Up,    shiftview,              { .i = -1 } },
 	{ MODKEY|ShiftMask,		XK_Page_Up,    shifttag,               { .i = -1 } },
