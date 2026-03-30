@@ -265,7 +265,9 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,		XK_Page_Down,  shifttag,               { .i = +1 } },
 
 	{ MODKEY,			XK_F5,         xrdb,                   {.v = NULL } },
-	{ MODKEY,			XK_F11,		spawn,                  SHCMD("mpv --untimed --no-cache --no-osc --no-input-default-bindings --profile=low-latency --input-conf=/dev/null --title=webcam $(ls /dev/video[0,2,4,6,8] | tail -n 1)") },
+	{ MODKEY,			XK_F11,		spawn,         SHCMD("mpv --untimed --no-cache --no-osc --no-input-default-bindings --profile=low-latency --input-conf=/dev/null --title=webcam $(ls /dev/video[0,2,4,6,8] | tail -n 1)") },
+	{ 0,				XK_F12,        spawn,		       {.v = (const char*[]){"clipmenu", NULL}}},
+	{ ShiftMask,			XK_F12,        spawn,		       {.v = (const char*[]){"clipdelmenu", NULL}}},
 	{ MODKEY,			XK_space,      zoom,                   {0} },
 	{ MODKEY|ShiftMask,		XK_space,      togglefloating,         {0} },
 
@@ -273,6 +275,8 @@ static const Key keys[] = {
 	{ ShiftMask,			XK_Print,      spawn,                  {.v = (const char*[]){ "maimpick", NULL } } },
 	{ MODKEY,			XK_Scroll_Lock, spawn,                 SHCMD("killall screenkey || screenkey &") },
 
+	{ 0, XF86XK_Favorites,			       spawn,		       {.v = (const char*[]){"clipmenu", NULL}}},
+	{ ShiftMask, XF86XK_Favorites,		       spawn,		       {.v = (const char*[]){"clipdelmenu", NULL}}},
 	{ 0, XF86XK_AudioMute,                         spawn,                  SHCMD("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; kill -38 $(pidof dwmblocks)") },
 	{ ControlMask, XF86XK_AudioMute,               spawn,                  SHCMD("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle; kill -38 $(pidof dwmblocks)") },
 	{ 0, XF86XK_AudioRaiseVolume,                  spawn,                  {.v = (const char*[]) {"set-volume", "-vol", "5%+", NULL} } },
