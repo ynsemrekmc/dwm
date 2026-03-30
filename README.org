@@ -27,3 +27,4 @@ This is suckless, mmmbud, the source code is the documentation! Check out [[file
 - [[https://dwm.suckless.org/patches/vanitygaps/][vanitygaps]]: Gaps allowed across all layouts.
 - [[https://dwm.suckless.org/patches/swallow/][swallow patch]]: if a program run from a terminal would make it inoperable, it temporarily takes its place to save space.
 - [[https://dwm.suckless.org/patches/systray/][systray patch]]: Add a system tray for application icons in the status bar.
+- [[https://dwm.suckless.org/patches/moveresize/][moveresize]] and [[https://dwm.suckless.org/patches/resizecorners/][resizecorners]] to allow resizing with key bindings and resizing from the nearest corner to the pointer.
