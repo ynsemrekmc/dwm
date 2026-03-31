@@ -66,6 +66,7 @@ static const Rule rules[] = {
 	{ "spterm",   "spterm",     NULL,	 SPTAG(0),    1,           1,          0,         -1 },
 	{ "Emacs",    "spcalc",      NULL, 	 SPTAG(1),    1,           1,          0,         -1 },
 	{ "Emacs",    "spagenda",    NULL,	 SPTAG(2),    1,           1,          0,         -1 },
+	{ "Emacs",    "Ediff",     NULL,	 0,	      1,           0,          0,         -1 },
 };
 
 /* layout(s) */
