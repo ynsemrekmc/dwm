@@ -265,6 +265,7 @@ static const Key keys[] = {
 	{ MODKEY,			XK_Page_Down,  shiftview,              { .i = +1 } },
 	{ MODKEY|ShiftMask,		XK_Page_Down,  shifttag,               { .i = +1 } },
 
+	{ MODKEY,			XK_F4,         spawn,                  {.v = (const char*[]){"change_sinks.py", NULL} } },
 	{ MODKEY,			XK_F5,         xrdb,                   {.v = NULL } },
 	{ MODKEY,			XK_F11,		spawn,         SHCMD("mpv --untimed --no-cache --no-osc --no-input-default-bindings --profile=low-latency --input-conf=/dev/null --title=webcam $(ls /dev/video[0,2,4,6,8] | tail -n 1)") },
 	{ 0,				XK_F12,        spawn,		       {.v = (const char*[]){"clipmenu", NULL}}},
