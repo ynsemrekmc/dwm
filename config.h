@@ -282,8 +282,8 @@ static const Key keys[] = {
 	{ MODKEY,			XK_space,      zoom,                   {0} },
 	{ MODKEY|ShiftMask,		XK_space,      togglefloating,         {0} },
 
-	{ 0,				XK_Print,      spawn,                  SHCMD("maim ~/Pictures/pic-full-$(date '+%y%m%d-%H%M-%S').png") },
-	{ ShiftMask,			XK_Print,      spawn,                  {.v = (const char*[]){ "maimpick", NULL } } },
+	{ 0,				XK_Print,      spawn,                  SHCMD("flameshot screen -p ~/Pictures/pic-full-$(date '+%y%m%d-%H%M-%S').png") },
+	{ ShiftMask,			XK_Print,      spawn,                  {.v = (const char*[]){ "flameshot gui", NULL } } },
 	{ MODKEY,			XK_Scroll_Lock, spawn,                 SHCMD("killall screenkey || screenkey &") },
 
 	{ 0, XF86XK_Favorites,			       spawn,		       {.v = (const char*[]){"clipmenu", NULL}}},
