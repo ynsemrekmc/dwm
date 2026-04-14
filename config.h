@@ -3,7 +3,7 @@
 /* Constants */
 #define TERMINAL "alacritty"
 #define TERMCLASS "Alacritty"
-#define BROWSER "mullvad-browser-bin"
+#define BROWSER "mullvad-sandboxed"
 #define LOCKER "loginctl lock-session"
 
 /* appearance */
