@@ -173,7 +173,7 @@ static const Key keys[] = {
 	/* restart */
 	{ MODKEY|ControlMask,		XK_q,          quit,                   {1} },
 	{ MODKEY,			XK_w,          spawn,                  {.v = (const char*[]){ BROWSER, NULL } } },
-	{ MODKEY|ShiftMask,		XK_w,          spawn,                  {.v = (const char*[]){ TERMINAL, "-e", "nmtui", NULL } } },
+	{ MODKEY|ShiftMask,		XK_w,          spawn,                  {.v = (const char*[]){ "firefox-sandboxed", NULL } } },
 	{ MODKEY|ShiftMask,		XK_r,          spawn,                  {.v = (const char*[]){ TERMINAL, "-e", "htop", NULL } } },
 	{ MODKEY,			XK_t,          setlayout,              {.v = &layouts[0]} }, /* spiral */
 	{ MODKEY|ShiftMask,		XK_t,          setlayout,              {.v = &layouts[1]} }, /* bstack */
