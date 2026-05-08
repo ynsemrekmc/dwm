@@ -195,7 +195,7 @@ static const Key keys[] = {
 	{ MODKEY,			XK_d,          spawn,                  {.v = (const char*[]){ "dmenu_run", NULL } } },
 	{ MODKEY|ShiftMask,		XK_d,          spawn,                  {.v = (const char*[]){ "systemmenu", NULL } } },
 	{ MODKEY,			XK_c,          togglefullscr,          {0} },
-	/* { MODKEY|ShiftMask,		XK_f,          setlayout,              {.v = &layouts[8]} }, */
+	{ MODKEY|ControlMask,		XK_t,          setlayout,              {.v = &layouts[8]} },
 	{ MODKEY,			XK_g,          shiftview,              { .i = -1 } },
 	{ MODKEY|ShiftMask,		XK_g,          shifttag,               { .i = -1 } },
 	{ MODKEY,			XK_b,          setmfact,               {.f = -0.05} },
