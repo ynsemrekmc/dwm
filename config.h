@@ -194,6 +194,7 @@ static const Key keys[] = {
 	/* { MODKEY|ShiftMask,		XK_s,          spawn,                  SHCMD("") }, */
 	{ MODKEY,			XK_d,          spawn,                  {.v = (const char*[]){ "dmenu_run", NULL } } },
 	{ MODKEY|ShiftMask,		XK_d,          spawn,                  {.v = (const char*[]){ "systemmenu", NULL } } },
+	{ MODKEY|ShiftMask,		XK_Return,     spawn,		       {.v = termcmd } },
 	{ MODKEY,			XK_c,          togglefullscr,          {0} },
 	{ MODKEY|ControlMask,		XK_t,          setlayout,              {.v = &layouts[8]} },
 	{ MODKEY,			XK_g,          shiftview,              { .i = -1 } },
@@ -206,12 +207,11 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,		XK_c,	       togglescratch,          {.ui = 1} },
 	/* { MODKEY|ShiftMask,		XK_apostrophe, spawn,                  SHCMD("") }, */
 	{ MODKEY|ShiftMask,		XK_apostrophe, togglesmartgaps,        {0} },
-	{ MODKEY|ShiftMask,		XK_Return,     spawn,                  {.v = emacsterm } },
 	{ MODKEY|ShiftMask,		XK_m,	       spawn,                  {.v = (const char*[]) {"downloadmpv" , NULL} } },
 	{ MODKEY|ShiftMask,		XK_odiaeresis, spawn,                  {.v = (const char*[]) {"startmpv" , NULL} } },
 	{ MODKEY,			XK_Return,     spawn,                  {.v = emacscmd } },
 	{ MODKEY,			XK_a,          togglescratch,	       {.ui = 2} },
-	{ MODKEY|ControlMask,		XK_Return,     spawn,		       {.v = termcmd } },
+	{ MODKEY|ControlMask,		XK_Return,     spawn,                  {.v = emacsterm } },
 	{ MODKEY,			XK_l,          spawn,                  {.v = (const char*[]){ "dinitctl", "start", "lock.target", NULL } } },
 
 
